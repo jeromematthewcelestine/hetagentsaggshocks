@@ -36,8 +36,6 @@ opt.n_kp = opt.n_z * opt.n_k;
 opt.z_mesh	= repmat(opt.z_grid,opt.n_k,1);
 opt.k_mesh	= repmat(opt.k_grid,1,opt.n_z);
 
-addpath('Het1');
-
 [Xss, idx] = Investment_steadystate(opt, params);
 
 %%
