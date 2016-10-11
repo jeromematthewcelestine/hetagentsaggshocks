@@ -1,4 +1,26 @@
 function kp_grid_out = Investment_solve_for_policy(opt, params, kp_grid_in, Ex, price, Eprice)
+%INVESTMENT_SOLVE_FOR_POLICY solve for individual firm policy functions
+% 
+%   INPUTS
+%   - opt : structure
+%       Options for number of iterations and tolerances on approximation
+%       routines
+%   - params : structure
+%       Model parameters
+%   - kp_grid_in : 
+% 
+%   - Ex : 
+%       
+%   - price : 
+%      
+%   - Eprice : 
+% 
+% 
+%   OUTPUTS
+%   - kp_grid_out : vector
+%       
+%       
+%---------------------------------
 
 kp_grid_out = zeros(size(kp_grid_in));
 
@@ -19,4 +41,7 @@ for k_idx = 1:opt.n_k
 		end
 		kp_grid_out(k_idx,z_idx)	= kp_star;
 	end
+end
+
+
 end

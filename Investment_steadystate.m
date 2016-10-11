@@ -1,4 +1,20 @@
 function [Xss, idx] = Investment_steadystate(opt, params)
+%INVESTMENT_STEADYSTATE computes the steady state of the model
+% 
+%   INPUTS
+%   - opt : structure
+%       Options for number of iterations and tolerances on approximation
+%       routines
+%   - params : structure
+%       Model parameters
+%   OUTPUTS
+%   - Xss : vector
+%       Vector of model variables in steady state
+%   - idx : structure
+%       Contains the index values inside Xss that denote each
+%       of the state variables' positions.
+%       
+%---------------------------------
 
 kp_grid = repmat(opt.k_grid, 1, opt.n_z);
 
@@ -53,3 +69,5 @@ Xss(idx.consumption)	= log(aggs_ss.consumption);
 Xss(idx.output)			= log(aggs_ss.output);
 Xss(idx.investment)		= log(aggs_ss.investment);
 
+
+end

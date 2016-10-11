@@ -1,4 +1,28 @@
 function f = Investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx)
+%INVESTMENT_DYNAMIC_EQUATIONS  
+% 
+%   INPUTS
+%   - opt : structure
+%       Options for number of iterations and tolerances on approximation
+%       routines
+%   - params : structure
+%       Model parameters
+%   - X_t : vector
+%       The vector of state variables in the current period
+%   - X_tm1 : vector
+%       The vector of state variables in previous period (i.e. "X at t
+%       minus 1")
+%   - Xss : vector
+%       Vector of model variables in steady state
+%   - idx : structure
+%       Contains the index values inside Xss that denote each
+%       of the state variables' positions. 
+% 
+%   OUTPUTS
+%   - f : vector
+%       
+%       
+%---------------------------------
 
 n_states	= length(Xss);
 
@@ -53,4 +77,5 @@ f(idx.consumption)	= log(consumption_t)	- log(consumption_new);
 f(idx.price)		= log(price_t)			- log(price_new);
 f(idx.Eprice)		= log(price_t)			- log(Eprice_tm1);
 
+end
 
