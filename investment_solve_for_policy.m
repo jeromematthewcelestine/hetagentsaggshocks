@@ -1,4 +1,4 @@
-function kp_grid_out = Investment_solve_for_policy(opt, params, kp_grid_in, Ex, price, Eprice)
+function kp_grid_out = investment_solve_for_policy(opt, params, kp_grid_in, Ex, price, Eprice)
 %INVESTMENT_SOLVE_FOR_POLICY solve for individual firm policy functions
 % 
 %   INPUTS
@@ -28,7 +28,8 @@ for k_idx = 1:opt.n_k
 	for z_idx = 1:opt.n_z
 		k = opt.k_grid(k_idx);
 		
-		obj_fn = @(kp) Investment_firm_objective_function(opt, params, kp_grid_in, k, z_idx, kp, Ex, price, Eprice);
+		obj_fn = @(kp) investment_firm_objective_function(opt, params, kp_grid_in, ...
+                                                          k, z_idx, kp, Ex, price, Eprice);
 
 		% 	first check if lower bound binds
 		diff_k = obj_fn(opt.k_grid(1));

@@ -1,6 +1,10 @@
 function [Xss, idx] = investment_steadystate(opt, params)
 %INVESTMENT_STEADYSTATE computes the steady state of the model
 % 
+%   Compute the steady state of the model with no aggregate uncertainty, 
+%   but in which idiosyncratic uncertainty persists. 
+% 
+%---------------------------------
 %   INPUTS
 %   - opt : structure
 %       Options for number of iterations and tolerances on approximation
@@ -13,7 +17,6 @@ function [Xss, idx] = investment_steadystate(opt, params)
 %   - idx : structure
 %       Contains the index values inside Xss that denote each
 %       of the state variables' positions.
-%       
 %---------------------------------
 
 kp_grid = repmat(opt.k_grid, 1, opt.n_z);

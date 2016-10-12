@@ -1,6 +1,7 @@
-function f = Investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx)
+function f = investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx)
 %INVESTMENT_DYNAMIC_EQUATIONS  
 % 
+%---------------------------------
 %   INPUTS
 %   - opt : structure
 %       Options for number of iterations and tolerances on approximation
@@ -20,12 +21,12 @@ function f = Investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx)
 % 
 %   OUTPUTS
 %   - f : vector
-%       
-%       
+%       For every variable in the model, compute the 
 %---------------------------------
 
 n_states	= length(Xss);
 
+% Extract model variables
 kp_grid_t			= X_t(idx.kp);
 Ekp_grid_t			= X_t(idx.Ekp);
 dist_t				= X_t(idx.dist);
@@ -48,7 +49,7 @@ consumption_tm1		= exp(X_tm1(idx.consumption));
 price_tm1			= exp(X_tm1(idx.price));
 Eprice_tm1			= exp(X_tm1(idx.Eprice));
 
-kp_grid_new			= Investment_solve_for_policy(opt, params, reshape(Ekp_grid_t,opt.n_k,opt.n_z), exp(Ex_t), price_t, Eprice_t);
+kp_grid_new			= investment_solve_for_policy(opt, params, reshape(Ekp_grid_t,opt.n_k,opt.n_z), exp(Ex_t), price_t, Eprice_t);
 kp_grid_new			= reshape(kp_grid_new, opt.n_kp, 1);
 
 new_Q				= compute_transition_matrix(opt, kp_grid_t);
