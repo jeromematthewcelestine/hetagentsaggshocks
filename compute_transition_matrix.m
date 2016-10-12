@@ -1,6 +1,8 @@
 function Q = compute_transition_matrix(opt, kp_grid)
 %COMPUTE_TRANSITION_MATRIX creates transition probaility matrix
 %
+%
+%------------------------------------------------------------
 %   INPUTS
 %   - opt : structure
 %       Options for number of iterations and tolerances on approximation

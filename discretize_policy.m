@@ -1,7 +1,10 @@
 function Q = discretize_policy(grid, pol)
-%DISCRETIZE_POLICY Creates a transition probability matrix using linear interpolation over
-% the policy function.
+%DISCRETIZE_POLICY compute transition probability matrix
 %
+%   Creates a transition probability matrix using linear interpolation over
+%   the policy function.
+%
+%------------------------------------------------------------
 %   INPUTS
 %   - grid : vector
 %       Define grid of points for the given state variable

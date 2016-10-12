@@ -1,24 +1,31 @@
 function kp_grid_out = investment_solve_for_policy(opt, params, kp_grid_in, Ex, price, Eprice)
 %INVESTMENT_SOLVE_FOR_POLICY solve for individual firm policy functions
 % 
+%   Given the firm's objective function and a current guess for the policy
+%   function, update the guess for the firm's optimal capital choice. In
+%   this case, the firm's objective function is defined as the difference
+%   between the left and right hand side of the FOC. Hence, we are solving
+%   for the zero of that system.
+%
+%---------------------------------
 %   INPUTS
 %   - opt : structure
 %       Options for number of iterations and tolerances on approximation
 %       routines
 %   - params : structure
 %       Model parameters
-%   - kp_grid_in : 
-% 
-%   - Ex : 
-%       
-%   - price : 
-%      
-%   - Eprice : 
-% 
+%   - kp_grid_in : vector
+%       Current guess for the capital policy.
+%   - Ex : scalar
+%       Expected value of next period's aggregate state.
+%   - price : scalar
+%       Current price of the investment good.
+%   - Eprice : scalar
+%       Expected value of next period's price of the investment good.
 % 
 %   OUTPUTS
 %   - kp_grid_out : vector
-%       
+%       Updated guess for the capital policy.
 %       
 %---------------------------------
 

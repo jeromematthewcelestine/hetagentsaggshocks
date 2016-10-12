@@ -1,7 +1,15 @@
 function dist = compute_stationary_distribution(opt, transition_matrix)
-%COMPUTE_STATIONARY_DISTRIBUTION computes the stationary distribution of
-%the model
+%COMPUTE_STATIONARY_DISTRIBUTION stationary distribution of the model
 %
+%   Compute the stationary distribution of the model. This does not feature
+%   aggregate uncertainty, although it does contain idiosyncratic
+%   uncertainty. 
+%   
+%   Compute by iterating on the discretized density transition equation:
+%       dist(t) = Q(t)*dist(t-1)
+%   where Q(t) = transition_matrix. 
+%
+%------------------------------------------------------------
 %   INPUTS
 %   - opt : structure
 %       Options for number of iterations and tolerances on approximation

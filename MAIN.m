@@ -4,6 +4,10 @@
 % agents and aggregate shocks in general equilibrium. Solves a simple model 
 % of firm investment with persistent aggregate and idiosyncratic productivity 
 % shocks.
+%
+% Note, this code uses the Gensys code of Chris Sims. This can be
+% downloaded from: 
+%   http://sims.princeton.edu/yftp/gensys/
 % 
 % Reiter (2009), Journal of Economic Dynamics & Control, 
 % "Solving heterogeneous-agent models by projection and perturbation."
@@ -28,11 +32,10 @@ tic;
 
 [Xss, idx] = investment_steadystate(opt, params);
 
-%% 
 
-f_bnd = @(X_t, X_tm1) investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx);
+%% Construct linear system matrices
+% Input the system in the form: G0_r1*X(t) = G1_r1*X(t-1) + C_r1 + Psi_r1*z(t) + Pi_r1*eta(t)
 
-%% 
 n_states = length(Xss);
 
 Psi_r1 = zeros(n_states,1);
@@ -45,16 +48,15 @@ Pi_r1(idx.Eprice,opt.n_kp+2) = 1;
 
 C_r1 = zeros(n_states,1);
 
+f_bnd = @(X_t, X_tm1) investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx);
 [G0_r1, G1_r1] = linearize(f_bnd, Xss, opt.derivative_size);
+
 
 %% Use Gensys to solve the linear Rational Expectations system 
 %
-% Input the system in the form: G0_r1*X(t) = G1_r1*X(t-1) + C_r1 + Psi_r1*z(t) + Pi_r1*eta(t)
 % Returns system of the form: X(t) = A_r1*X(t-1) + Ctilde + B_r1*z(t) + ywt*inv(I-fmat*inv(L))*fwt*z(t+1) .
 % Note, here Ctilde=0, and we are interested in A_r1 and B_r1 
-%
-% A_r1 = VAR(1) coefficient matrix
-% B_r1 = Immediate impact coefficient matrix on shocks to the VAR(1) system
+
 [A_r1, ~, B_r1, ~, ~, ~, ~, eu] = gensys(G0_r1, G1_r1, C_r1, Psi_r1, Pi_r1);
 
 fprintf('--------------------------------\n')
@@ -80,6 +82,7 @@ title('Policy function')
 xlabel('Current capital, k')
 legend('Low productivity','High productivity')
 set(gca, 'fontsize', fontsize)
+
 subplot(1,2,2)
 plot(opt.k_grid,hist_ss, 'linewidth', 2)
 grid on
