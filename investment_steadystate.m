@@ -1,4 +1,23 @@
-function [Xss, idx] = Investment_steadystate(opt, params)
+function [Xss, idx] = investment_steadystate(opt, params)
+%INVESTMENT_STEADYSTATE computes the steady state of the model
+% 
+%   Compute the steady state of the model with no aggregate uncertainty, 
+%   but in which idiosyncratic uncertainty persists. 
+% 
+%---------------------------------
+%   INPUTS
+%   - opt : structure
+%       Options for number of iterations and tolerances on approximation
+%       routines
+%   - params : structure
+%       Model parameters
+%   OUTPUTS
+%   - Xss : vector
+%       Vector of model variables in steady state
+%   - idx : structure
+%       Contains the index values inside Xss that denote each
+%       of the state variables' positions.
+%---------------------------------
 
 kp_grid = repmat(opt.k_grid, 1, opt.n_z);
 
@@ -11,7 +30,7 @@ converged = 0;
 for iter = 1:opt.n_iter
 	kp_grid_old = kp_grid;
 	
-	kp_grid = Investment_solve_for_policy(opt, params, kp_grid_old, Ex_ss, price_ss, Eprice_ss);
+	kp_grid = investment_solve_for_policy(opt, params, kp_grid_old, Ex_ss, price_ss, Eprice_ss);
 
 	error = max(abs(kp_grid(:) - kp_grid_old(:)));
 	if (error < opt.kp_error_tol)
@@ -53,3 +72,5 @@ Xss(idx.consumption)	= log(aggs_ss.consumption);
 Xss(idx.output)			= log(aggs_ss.output);
 Xss(idx.investment)		= log(aggs_ss.investment);
 
+
+end
