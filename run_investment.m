@@ -26,11 +26,11 @@ tic;
 
 %% Compute steady state
 
-[Xss, idx] = Investment_steadystate(opt, params);
+[Xss, idx] = investment_steadystate(opt, params);
 
 %% 
 
-f_bnd = @(X_t, X_tm1) Investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx);
+f_bnd = @(X_t, X_tm1) investment_dynamic_equations(opt, params, X_t, X_tm1, Xss, idx);
 
 %% 
 n_states = length(Xss);
