@@ -1,6 +1,6 @@
 # hetagentsaggshocks
 
-UPDATE: Consider looking at (hadsge)[https://github.com/jeromematthewcelestine/hadsge] for Reiter-method code instead.
+UPDATE: Consider looking at [https://github.com/jeromematthewcelestine/hadsge] for Reiter-method code instead.
 
 Demonstration of the Reiter method for solving a model with heterogeneous agents and aggregate shocks in general equilibrium. Solves a simple model of firm investment with persistent aggregate and idiosyncratic productivity shocks.
 
